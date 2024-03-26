@@ -1,4 +1,5 @@
-﻿namespace ConsoleApp1
+﻿
+namespace ConsoleApp1
 {
     class GiftBox
     {
@@ -9,31 +10,36 @@
     {
         static void Main(string[] args)
         {
-            GiftBox a = new GiftBox()
+            GiftBox addressA = GiftBoxMaker("A친구야 잘 지내지?", 110000);
+            GiftBox addressB = GiftBoxMaker("B친구야 잘 지내지?", 120000);
+            GiftBox addressC = GiftBoxMaker("C친구야 잘 지내지?", 130000);
+
+            GiftBox[] giftBoxArr = new GiftBox[3];
+            GiftBox giftBox = giftBoxArr[0];
+            giftBoxArr[0] = addressA;
+            giftBoxArr[1] = addressB;
+            giftBoxArr[2] = addressC;
+            Console.WriteLine("giftBix Array Count : " + giftBoxArr.Length);
+
+            //List
+            List<GiftBox> giftBoxList = new List<GiftBox>();
+            giftBoxList.Add(addressA); //0
+            giftBoxList.Add(addressB); //1
+            giftBoxList.Add(addressC); //2
+
+            Console.WriteLine(giftBoxList[2].Letter);
+            Console.WriteLine("giftbox List Count : " + giftBoxList.Count);
+        }
+
+        private static GiftBox GiftBoxMaker(string letter, int money)
+        {
+            GiftBox addressA = new GiftBox()
             {
-                Letter = "잘 지내지?",
-                Money = 100000
+                Letter = letter,
+                Money = money
             };
-
-            Console.WriteLine("A 송장내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-            GiftBox 배송기사님 = a;
-
-            Console.WriteLine("배송기사님 송장내용");
-            Console.WriteLine(배송기사님.Letter);
-            Console.WriteLine(배송기사님.Money);
-
-            a.Letter = "어떻게 지내고 있어?";
-            a.Money = 150000;
-
-            Console.WriteLine("A 변경이후 송장내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-
-            Console.WriteLine("배송기사님 송장내용");
-            Console.WriteLine(배송기사님.Letter);
-            Console.WriteLine(배송기사님.Money);
+            
+            return addressA;
         }
     }
 }
